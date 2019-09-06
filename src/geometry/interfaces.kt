@@ -1,3 +1,4 @@
+package geometry
 
 interface Add<T, R> {
     infix fun add(v: T): R

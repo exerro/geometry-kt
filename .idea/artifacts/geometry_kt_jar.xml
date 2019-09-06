@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="geometry-kt:jar">
+  <artifact type="jar" build-on-make="true" name="geometry-kt:jar">
     <output-path>$PROJECT_DIR$/../../dev_out</output-path>
     <root id="archive" name="geometry-kt.jar">
       <element id="module-output" name="geometry-kt" />
