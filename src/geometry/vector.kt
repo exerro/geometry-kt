@@ -33,6 +33,19 @@ data class vec2(val x: Float, val y: Float = x)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
+val vec2_zero = vec2(0f)
+val vec2_one = vec2(1f)
+val vec2_x = vec2(1f, 0f)
+val vec2_y = vec2(0f, 1f)
+
+val vec3_zero = vec3(0f)
+val vec3_one = vec3(1f)
+val vec3_x = vec3(1f, 0f, 0f)
+val vec3_y = vec3(0f, 1f, 0f)
+val vec3_z = vec3(0f, 0f, 1f)
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
 operator fun vec4.times(v: vec4) = vec4(x * v.x, y * v.y, z * v.z, w * v.w)
 operator fun vec4.div(v: vec4) = vec4(x / v.x, y / v.y, z / v.z, w / v.w)
 
