@@ -11,6 +11,7 @@ data class vec4(val x: Float, val y: Float = x, val z: Float = y, val w: Float =
     override fun mul(v: Float): vec4 = vec4(x * v, y * v, z * v, w * v)
     override fun div(v: Float): vec4 = vec4(x / v, y / v, z / v, w / v)
     override fun unm(): vec4 = vec4(-x, -y, -z, -w)
+    override fun toString(): String = "($x, $y, $z, w=$w)"
 }
 
 data class vec3(val x: Float, val y: Float = x, val z: Float = y)
@@ -20,6 +21,7 @@ data class vec3(val x: Float, val y: Float = x, val z: Float = y)
     override fun mul(v: Float): vec3 = vec3(x * v, y * v, z * v)
     override fun div(v: Float): vec3 = vec3(x / v, y / v, z / v)
     override fun unm(): vec3 = vec3(-x, -y, -z)
+    override fun toString(): String = "($x, $y, $z)"
 }
 
 data class vec2(val x: Float, val y: Float = x)
@@ -29,6 +31,7 @@ data class vec2(val x: Float, val y: Float = x)
     override fun mul(v: Float): vec2 = vec2(x * v, y * v)
     override fun div(v: Float): vec2 = vec2(x / v, y / v)
     override fun unm(): vec2 = vec2(-x, -y)
+    override fun toString(): String = "($x, $y)"
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

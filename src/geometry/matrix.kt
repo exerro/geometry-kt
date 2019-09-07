@@ -1,7 +1,21 @@
 package geometry
 
-class mat4(vararg val elements: Float)
-class mat3(vararg val elements: Float)
+class mat4(vararg val elements: Float) {
+    override fun toString(): String = listOf(
+            listOf(elements[ 0], elements[ 1], elements[ 2], elements[ 3]),
+            listOf(elements[ 4], elements[ 5], elements[ 6], elements[ 7]),
+            listOf(elements[ 8], elements[ 9], elements[10], elements[11]),
+            listOf(elements[12], elements[13], elements[14], elements[15])
+    ).joinToString("\n") { "[" + it.joinToString() + "]" }
+}
+
+class mat3(vararg val elements: Float) {
+    override fun toString(): String = listOf(
+            listOf(elements[0], elements[1], elements[2]),
+            listOf(elements[3], elements[4], elements[5]),
+            listOf(elements[6], elements[7], elements[8])
+    ).joinToString("\n") { "[" + it.joinToString() + "]" }
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
