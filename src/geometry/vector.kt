@@ -106,6 +106,10 @@ fun vec4.max() = max(max(max(x, y), z), w)
 
 fun vec2.rotate90CCW(): vec2 = vec2(-y, x)
 fun vec2.rotate90CW(): vec2 = vec2(y, -x)
+fun vec2.rotate45CCW(): vec2 = vec2(sqrt22 * x - sqrt22 * y,
+                                    sqrt22 * y + sqrt22 * x)
+fun vec2.rotate45CW(): vec2 = vec2(sqrt22 * x + sqrt22 * y,
+                                    sqrt22 * y - sqrt22 * x)
 
 fun vec3.toRotationMatrix(): mat3
         = mat3_rotate(y, vec3(0f, 1f, 0f)) *
@@ -116,3 +120,5 @@ fun vec3.toInverseRotationMatrix(): mat3
         = mat3_rotate(-z, vec3(0f, 0f, 1f)) *
         mat3_rotate(-x, vec3(1f, 0f, 0f)) *
         mat3_rotate(-y, vec3(0f, 1f, 0f))
+
+private val sqrt22 = sqrt(2f)/2
