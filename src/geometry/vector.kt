@@ -90,9 +90,9 @@ infix fun vec3.cross(v: vec3) = vec3(
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-fun vec2.unpack(): Array<Float> = arrayOf(x, y)
-fun vec3.unpack(): Array<Float> = arrayOf(x, y, z)
-fun vec4.unpack(): Array<Float> = arrayOf(x, y, z, w)
+fun vec2.unpack(): List<Float> = listOf(x, y)
+fun vec3.unpack(): List<Float> = listOf(x, y, z)
+fun vec4.unpack(): List<Float> = listOf(x, y, z, w)
 
 fun vec2.min() = min(x, y)
 fun vec3.min() = min(min(x, y), z)
