@@ -4,33 +4,36 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
 
-data class vec4(val x: Float, val y: Float = x, val z: Float = y, val w: Float = 1f)
-    : Add<vec4, vec4>, Sub<vec4, vec4>, Mul<Float, vec4>, Div<Float, vec4>, Unm<vec4> {
-    override fun add(v: vec4): vec4 = vec4(x + v.x, y + v.y, z + v.z, w + v.w)
-    override fun sub(v: vec4): vec4 = vec4(x - v.x, y - v.y, z - v.z, w - v.w)
-    override fun mul(v: Float): vec4 = vec4(x * v, y * v, z * v, w * v)
-    override fun div(v: Float): vec4 = vec4(x / v, y / v, z / v, w / v)
-    override fun unm(): vec4 = vec4(-x, -y, -z, -w)
+data class vec4(val x: Float, val y: Float = x, val z: Float = y, val w: Float = 1f) {
+    operator fun plus(v: vec4): vec4 = vec4(x + v.x, y + v.y, z + v.z, w + v.w)
+    operator fun minus(v: vec4): vec4 = vec4(x - v.x, y - v.y, z - v.z, w - v.w)
+    operator fun times(v: Float): vec4 = vec4(x * v, y * v, z * v, w * v)
+    operator fun times(v: vec4) = vec4(x * v.x, y * v.y, z * v.z, w * v.w)
+    operator fun div(v: Float): vec4 = vec4(x / v, y / v, z / v, w / v)
+    operator fun div(v: vec4) = vec4(x / v.x, y / v.y, z / v.z, w / v.w)
+    operator fun unaryMinus(): vec4 = vec4(-x, -y, -z, -w)
     override fun toString(): String = "($x, $y, $z, w=$w)"
 }
 
-data class vec3(val x: Float, val y: Float = x, val z: Float = y)
-    : Add<vec3, vec3>, Sub<vec3, vec3>, Mul<Float, vec3>, Div<Float, vec3>, Unm<vec3> {
-    override fun add(v: vec3): vec3 = vec3(x + v.x, y + v.y, z + v.z)
-    override fun sub(v: vec3): vec3 = vec3(x - v.x, y - v.y, z - v.z)
-    override fun mul(v: Float): vec3 = vec3(x * v, y * v, z * v)
-    override fun div(v: Float): vec3 = vec3(x / v, y / v, z / v)
-    override fun unm(): vec3 = vec3(-x, -y, -z)
+data class vec3(val x: Float, val y: Float = x, val z: Float = y) {
+    operator fun plus(v: vec3): vec3 = vec3(x + v.x, y + v.y, z + v.z)
+    operator fun minus(v: vec3): vec3 = vec3(x - v.x, y - v.y, z - v.z)
+    operator fun times(v: Float): vec3 = vec3(x * v, y * v, z * v)
+    operator fun times(v: vec3) = vec3(x * v.x, y * v.y, z * v.z)
+    operator fun div(v: Float): vec3 = vec3(x / v, y / v, z / v)
+    operator fun div(v: vec3) = vec3(x / v.x, y / v.y, z / v.z)
+    operator fun unaryMinus(): vec3 = vec3(-x, -y, -z)
     override fun toString(): String = "($x, $y, $z)"
 }
 
-data class vec2(val x: Float, val y: Float = x)
-    : Add<vec2, vec2>, Sub<vec2, vec2>, Mul<Float, vec2>, Div<Float, vec2>, Unm<vec2> {
-    override fun add(v: vec2): vec2 = vec2(x + v.x, y + v.y)
-    override fun sub(v: vec2): vec2 = vec2(x - v.x, y - v.y)
-    override fun mul(v: Float): vec2 = vec2(x * v, y * v)
-    override fun div(v: Float): vec2 = vec2(x / v, y / v)
-    override fun unm(): vec2 = vec2(-x, -y)
+data class vec2(val x: Float, val y: Float = x) {
+    operator fun plus(v: vec2): vec2 = vec2(x + v.x, y + v.y)
+    operator fun minus(v: vec2): vec2 = vec2(x - v.x, y - v.y)
+    operator fun times(v: Float): vec2 = vec2(x * v, y * v)
+    operator fun times(v: vec2) = vec2(x * v.x, y * v.y)
+    operator fun div(v: Float): vec2 = vec2(x / v, y / v)
+    operator fun div(v: vec2) = vec2(x / v.x, y / v.y)
+    operator fun unaryMinus(): vec2 = vec2(-x, -y)
     override fun toString(): String = "($x, $y)"
 }
 
@@ -46,17 +49,6 @@ val vec3_one = vec3(1f)
 val vec3_x = vec3(1f, 0f, 0f)
 val vec3_y = vec3(0f, 1f, 0f)
 val vec3_z = vec3(0f, 0f, 1f)
-
-//////////////////////////////////////////////////////////////////////////////////////////
-
-operator fun vec4.times(v: vec4) = vec4(x * v.x, y * v.y, z * v.z, w * v.w)
-operator fun vec4.div(v: vec4) = vec4(x / v.x, y / v.y, z / v.z, w / v.w)
-
-operator fun vec3.times(v: vec3) = vec3(x * v.x, y * v.y, z * v.z)
-operator fun vec3.div(v: vec3) = vec3(x / v.x, y / v.y, z / v.z)
-
-operator fun vec2.times(v: vec2) = vec2(x * v.x, y * v.y)
-operator fun vec2.div(v: vec2) = vec2(x / v.x, y / v.y)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 

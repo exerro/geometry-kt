@@ -1,6 +1,23 @@
 package geometry
 
 class mat4(vararg val elements: Float) {
+    operator fun times(m: mat4): mat4 {
+        val result = FloatArray(16)
+
+        for (i in 0 .. 3) for (j in 0 .. 3) for (k in 0 .. 3) {
+            result[i * 4 + j] += elements[i * 4 + k] * m.elements[k * 4 + j]
+        }
+
+        return mat4(*result)
+    }
+
+    operator fun times(v: vec4): vec4 = vec4(
+            elements[0] * v.x + elements[1] * v.y + elements[2] * v.z + elements[3] * v.w,
+            elements[4] * v.x + elements[5] * v.y + elements[6] * v.z + elements[7] * v.w,
+            elements[8] * v.x + elements[9] * v.y + elements[10] * v.z + elements[11] * v.w,
+            elements[12] * v.x + elements[13] * v.y + elements[14] * v.z + elements[15] * v.w
+    )
+
     override fun toString(): String = listOf(
             listOf(elements[ 0], elements[ 1], elements[ 2], elements[ 3]),
             listOf(elements[ 4], elements[ 5], elements[ 6], elements[ 7]),
@@ -10,47 +27,28 @@ class mat4(vararg val elements: Float) {
 }
 
 class mat3(vararg val elements: Float) {
+    operator fun times(m: mat3): mat3 {
+        val result = FloatArray(9)
+
+        for (i in 0 .. 2) for (j in 0 .. 2) for (k in 0 .. 2) {
+            result[i * 3 + j] += elements[i * 3 + k] * m.elements[k * 3 + j]
+        }
+
+        return mat3(*result)
+    }
+
+    operator fun times(v: vec3): vec3 = vec3(
+            elements[0] * v.x + elements[1] * v.y + elements[2] * v.z,
+            elements[3] * v.x + elements[4] * v.y + elements[5] * v.z,
+            elements[6] * v.x + elements[7] * v.y + elements[8] * v.z
+    )
+
     override fun toString(): String = listOf(
             listOf(elements[0], elements[1], elements[2]),
             listOf(elements[3], elements[4], elements[5]),
             listOf(elements[6], elements[7], elements[8])
     ).joinToString("\n") { "[" + it.joinToString() + "]" }
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////
-
-operator fun mat4.times(m: mat4): mat4 {
-    val result = FloatArray(16)
-
-    for (i in 0 .. 3) for (j in 0 .. 3) for (k in 0 .. 3) {
-        result[i * 4 + j] += elements[i * 4 + k] * m.elements[k * 4 + j]
-    }
-
-    return mat4(*result)
-}
-
-operator fun mat3.times(m: mat3): mat3 {
-    val result = FloatArray(9)
-
-    for (i in 0 .. 2) for (j in 0 .. 2) for (k in 0 .. 2) {
-        result[i * 3 + j] += elements[i * 3 + k] * m.elements[k * 3 + j]
-    }
-
-    return mat3(*result)
-}
-
-operator fun mat4.times(v: vec4): vec4 = vec4(
-        elements[0] * v.x + elements[1] * v.y + elements[2] * v.z + elements[3] * v.w,
-        elements[4] * v.x + elements[5] * v.y + elements[6] * v.z + elements[7] * v.w,
-        elements[8] * v.x + elements[9] * v.y + elements[10] * v.z + elements[11] * v.w,
-        elements[12] * v.x + elements[13] * v.y + elements[14] * v.z + elements[15] * v.w
-)
-
-operator fun mat3.times(v: vec3): vec3 = vec3(
-        elements[0] * v.x + elements[1] * v.y + elements[2] * v.z,
-        elements[3] * v.x + elements[4] * v.y + elements[5] * v.z,
-        elements[6] * v.x + elements[7] * v.y + elements[8] * v.z
-)
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
